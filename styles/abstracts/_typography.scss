@@ -1,4 +1,4 @@
-@use "../abstracts/mixins" as *;
+@use "./mixins" as *;
 
 $ff-primary: "Space Grotesk", sans-serif;
 
@@ -13,18 +13,3 @@ $fs-body: 1rem;
 
 $fw-500: 500;
 $fw-700: 700;
-
-$font-sizes: (
-    xl: clamp(2.5rem, 0.5rem + 10vw, 5rem),
-    l: clamp(2.5rem, 0.5rem + 7vw, 3.75rem),
-    m: clamp(1.4rem, 0.5rem + 3vw, 2.6875rem),
-    s: 1.3125rem,
-    xs: 1.125rem,
-    body: 1rem,
-);
-
-$fw: (
-    400: 400,
-    700: 700,
-    800: 800,
-);

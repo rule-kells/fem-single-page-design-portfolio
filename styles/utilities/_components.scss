@@ -1,64 +1,143 @@
 @use "../abstracts/" as *;
 
-.container {
-    --max-width: #{pxToRem($container-max-width)};
-    --padding: #{$padding-mod} * 2;
-
-    width: min(100% - var(--padding), var(--max-width));
-    // padding-inline: 1rem;
-    margin-inline: auto;
-}
-
-// changing data data type based on device 
-@include mq(tablet) {
-    .container[data-type="wide"] {
-        --padding: #{$padding-mod} * 4;
-    }
-}
-
-@include mq(desktop) {
-    .container[data-type="wide"] {
-        --max-width: #{pxToRem($container-max-width-wide)};
-    }
-}
-
-
 .flow>*+* {
     margin-top: var(--gap, 1rem);
 }
 
-.flex-group {
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: var(--flex-column-gap, $flex-group-gap);
-    row-gap: var(--flex-row-gap, calc($flex-group-gap / 2));
-    width: fit-content;
+.lead {
+    color: clr(neutral, 900);
+    text-transform: uppercase;
+
+    &+p {
+        margin-top: 0;
+    }
 }
 
-.flex-group.mx-auto {
-    justify-content: center;
+.box-shadow-1 {
+    box-shadow: 0 0 0.75rem rgb(0 0 0 / 0.25);
 }
 
-.even-columns {
-    display: grid;
-    gap: var(--grid-gap, $grid-gap);
+// container component 
 
-    &>* {
-        max-width: pxToRem(500px);
-        margin-inline: auto;
+.container {
+    --max-width: #{pxToRem($container-max-width)};
+    --padding: #{$padding-mod} * 2;
+
+    width: min(calc(100% - var(--padding)), var(--max-width));
+    margin-inline: auto;
+
+
+    &[data-tag="hero"] {
+        --max-width: #{pxToRem(735px)};
+
+        width: min(calc(100% - var(--padding)), var(--max-width));
     }
 
     @include mq(tablet) {
-        grid-auto-flow: column;
-        grid-auto-columns: 1fr;
+        --padding: #{$padding-mod} * 4;
+    }
+
+    @include mq(desktop) {
+        &[data-type="wide"] {
+            --max-width: #{pxToRem($container-max-width-wide)};
+        }
+    }
+}
+
+// flexbox components 
+
+.d-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &[data-tag="project"] {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    @include mq(tablet) {
+        &:not(.footer__bg) {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+    }
+
+    @include mq(desktop) {
+        &[data-tag="footer"] {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+    }
+}
+
+.d-grid-2-col {
+    display: grid;
+    align-items: center;
+
+    @include mq(tablet) {
+        justify-content: start;
+        align-items: end;
+        grid-template-columns: minmax(min(pxToRem(413.56px), 100%), 1fr) minmax(min(pxToRem(31.44px), 100%), 1fr) minmax(min(pxToRem(290.56px), 100%), 1fr);
+    }
+
+    @include mq(desktop) {
+        grid-template-columns: minmax(min-content, pxToRem(706px)) minmax(min-content, pxToRem(41px)) minmax(min-content, 445px);
     }
 }
 
 .grid-auto-fit {
+    --gap-column: 0;
+    --gap-row: #{$grid-gap};
+
+
     display: grid;
-    gap: var(--grid-gap, $grid-gap);
+    gap: var(--gap-row) var(--gap-column);
     grid-template-columns: repeat(auto-fit,
-            minmax(min(pxToRem(250px), 100%), 1fr));
+            minmax(min(pxToRem(342px), 100%), 1fr));
+    align-items: center;
+
+
+
+    &[data-tag="project"] {
+        --gap-column: 0;
+        --gap-row: #{pxToRem(40px)};
+    }
+
+    @include mq(tablet) {
+        & {
+            --gap-column: pxToRem(7px);
+            --gap-row: pxToRem(52px);
+        }
+
+        &[data-tag="project"] {
+            --gap-column: #{pxToRem(24px)};
+            --gap-row: #{pxToRem(60px)};
+        }
+    }
+
+    @include mq(desktop) {
+
+        & {
+            --gap-column: pxToRem(30px);
+            --gap-row: pxToRem(58px);
+        }
+
+        &[data-type="wide"] {
+            grid-template-columns: repeat(auto-fit,
+                    minmax(min(pxToRem(540px), 100%), 1fr));
+        }
+
+        &[data-tag="project"] {
+            --gap-column: #{pxToRem(30px)};
+            --gap-row: #{pxToRem(69px)};
+        }
+    }
 }
 
 .interactive-figure {
@@ -82,25 +161,4 @@
             transform: translateY(0%);
         }
     }
-}
-
-.lead {
-    font-size: fs(500);
-    color: clr(neutral, 900);
-    text-transform: uppercase;
-    font-weight: $fw-700;
-
-    &+p {
-        margin-top: 0;
-    }
-}
-
-.box-shadow-1 {
-    box-shadow: 0 0 0.75rem rgb(0 0 0 / 0.25);
-}
-
-
-.underline {
-    text-decoration: underline pxToRem(4px) solid clr(primary, 300);
-    text-underline-offset: 0.6rem;
 }

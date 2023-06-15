@@ -5,6 +5,10 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   <link rel="stylesheet" href="./styles/main.scss">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Frontend Mentor | Single-page developer portfolio</title>
@@ -12,8 +16,8 @@
 
 <body>
 
-  <header>
-    <nav>
+  <header class="header">
+    <nav class="nav nav__primary container d-flex " data-type="wide">
       <a href="#" class="branding-logo clr-white fs-logo-font">adamkeyes</a>
       <ul class="social__list">
         <li class="social__item">
@@ -55,13 +59,17 @@
 
   <main>
     <div class="hero">
-      <div class="container" data-type="wide" data-decoration="true">
-        <picture class="hero__img--wrapper">
+      <div class="container d-grid-2-col" data-tag="hero" data-type="wide" data-decoration="true">
+        <picture class="hero__img">
           <source srcset="./assets/images/image-profile-desktop.webp" media="(min-width: 1080px)">
           <source srcset="./assets/images/image-profile-tablet.webp" media="(min-width: 768px) and (max-width: 1079px)">
-          <img class="hero__img" src="./assets/images/image-profile-mobile.webp" alt=""
+          <img src="./assets/images/image-profile-mobile.webp" alt=""
             srcset="./assets/images/image-profile-mobile.webp">
         </picture>
+
+        <!-- <img class="rings" src="./assets/images/pattern-rings.svg" alt=""> -->
+        <!-- <img class="circle" src="./assets/images/pattern-circle.svg" alt=""> -->
+
         <section class="hero__content">
           <h1 class="fs-heading-xl clr-white">Nice to meet you! I'm <span data-decoration="true">Adam Keyes</span>.</h1>
           <p>
@@ -74,8 +82,8 @@
     </div>
 
 
-    <div class="skills">
-      <div class="container" data-decoration="true">
+    <div class="skills container" data-type="wide" data-decoration="true">
+      <div class="grid-auto-fit">
         <div>
           <p class="clr-white fs-heading-l"><strong>HTML</strong></p>
           <p><small>4 Years Experience</small></p>
@@ -105,13 +113,13 @@
     </div>
 
 
-    <div class="projects container" data-type="wide">
-      <section class="project__content d-flex" data-row="true">
+    <div class="project container" data-type="wide">
+      <section class="project__content d-flex" data-tag="project" data-row="true">
         <h2 class="clr-white fs-heading-l">Projects</h2>
-        <a href="#" class="projects__btn clr-white uppercase letter-spacing" data-decoration="true">Contact me</a>
+        <a href="#" class="project__btn clr-white uppercase letter-spacing" data-decoration="true">Contact me</a>
       </section>
 
-      <div class="grid-auto-fit" data-type="width">
+      <div class="grid-auto-fit" data-type="wide" data-tag="project">
         <div class="project-1">
           <picture>
             <source srcset="./assets/images/thumbnail-project-1-large.webp" media="(min-width: 1080px)">
@@ -171,7 +179,7 @@
               alt="A couple walking by looking at a giant picture of an older woman on the wall">
           </picture>
           <p class="clr-white fs-heading-m uppercase"><strong>Entertainment web app</strong></p>
-          <div class="strong__skills">
+          <div class="project__skills">
             <p class="fs-heading-s uppercase">HTML</p>
             <p class="fs-heading-s uppercase">CSS</p>
             <p class="fs-heading-s uppercase">JavaScript</p>
@@ -189,7 +197,7 @@
               alt="A couple walking by looking at a giant picture of an older woman on the wall">
           </picture>
           <p class="clr-white fs-heading-m uppercase"><strong>Memory Game</strong></p>
-          <div class="strong__skills">
+          <div class="project__skills">
             <p class="fs-heading-s uppercase">HTML</p>
             <p class="fs-heading-s uppercase">CSS</p>
             <p class="fs-heading-s uppercase">JavaScript</p>
@@ -207,7 +215,7 @@
               alt="A couple walking by looking at a giant picture of an older woman on the wall">
           </picture>
           <p class="clr-white fs-heading-m uppercase"><strong>Art gallery showcase</strong></p>
-          <div class="strong__skills">
+          <div class="project__skills">
             <p class="fs-heading-s uppercase">HTML</p>
             <p class="fs-heading-s uppercase">CSS</p>
             <p class="fs-heading-s uppercase">JavaScript</p>
@@ -224,7 +232,7 @@
   <footer class="footer">
     <div class="container" data-type="wide">
 
-      <div class="footer__bg d-flex" data-type="start">
+      <div class="footer__bg d-flex" data-tag="footer">
         <section class="footer__content">
           <h2 class="fs-heading-xl">Contact</h2>
           <p>
@@ -247,13 +255,13 @@
               <label for="msg" hidden>Message</label>
               <textarea name="msg" id="msg" placeholder="message" required></textarea>
             </div>
-            <div class="form__btn--wrapper"><a href="#" class="form__btn uppercase" data-decoration="true"
+            <div class="form__btn--wrapper"><a href="#" class="form__btn clr-white uppercase" data-decoration="true"
                 type="submit">Send Message</a></div>
           </form>
         </div>
       </div>
 
-      <nav class="footer__nav d-flex" data-type="wide">
+      <nav class="nav footer__nav d-flex" data-decoration="true">
         <a class="branding-logo clr-white fs-logo-font" href="#">adamkeyes</a>
         <ul cl ass="social__list">
           <li class="social__item">
